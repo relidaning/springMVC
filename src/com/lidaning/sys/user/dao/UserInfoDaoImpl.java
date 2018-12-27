@@ -10,13 +10,12 @@ public class UserInfoDaoImpl extends BaseDao implements UserInfoDao{
 
 	@Override
 	public void insertUser(UserInfo u) {
-//		super.getJdbcTemplate().execute(" insert into tab1 (id) values ('3') "); 
 		getSqlMapClientTemplate().insert("userInfo.insert", u);
 	}
 
 	@Override
 	public int getUserByUsernamePassword(String username, String password) {
-		return super.getJdbcTemplate().queryForInt(" select count(1) from user_info where username='"+username+"' and password = '"+password+"' ");
+		return super.getJdbcTemplate().queryForInt(" select count(1) from user_info where name='"+username+"' and password = '"+password+"' ");
 	}
 
 }

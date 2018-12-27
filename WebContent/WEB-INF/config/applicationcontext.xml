@@ -30,7 +30,7 @@
 	 <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"  lazy-init="true"/>
 	 
 	 <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="classpath:sqlMapConfig.xml"/>
+		<property name="configLocation" value="WEB-INF/config/sqlMapConfig.xml"/>
 		<property name="dataSource" ref="dataSource"/>
 		<property name="lobHandler" ref="oracleLobHandler"/>
 	 </bean>
@@ -38,5 +38,29 @@
 	 <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	 </bean>
+	 
+	 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="select*" read-only="true"/>
+			<tx:method name="count*" read-only="true"/>
+			<tx:method name="search*" read-only="true"/>
+			<!-- 添加事务 -->
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="*" read-only="false"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 通用事务配置 -->
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="(execution(public * com.lidaning.*.*.service..*(..)))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+	</aop:config>
 	 	
 </beans>

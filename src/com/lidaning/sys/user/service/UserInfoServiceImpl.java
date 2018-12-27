@@ -1,7 +1,6 @@
 package com.lidaning.sys.user.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,14 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	@Override
 	public void insertUser(UserInfo u) {
+		u.setId(UUID.randomUUID().toString());
+		u.setName("lidaning");
+		u.setPassword("***");
+		userInfoDao.insertUser(u);
+		
+		u.setId(UUID.randomUUID().toString());
+		u.setName("lidaning");
+		u.setPassword("***");
 		userInfoDao.insertUser(u);
 	}
 	

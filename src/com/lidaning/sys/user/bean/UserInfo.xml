@@ -11,7 +11,7 @@
 		name ,
 		password
 		) values (
-		'2', '2', '2'
+		#id#, #name#, #password#
 		)
 	</insert>
 	
