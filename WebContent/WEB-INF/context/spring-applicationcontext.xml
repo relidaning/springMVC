@@ -4,12 +4,15 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop.xsd
 			http://www.springframework.org/schema/context 
-			http://www.springframework.org/schema/context/spring-context-3.0.xsd" >
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
      <!-- 启动@AspectJ支持 -->
      <aop:aspectj-autoproxy/>
      
@@ -21,7 +24,19 @@
 	 	p:username="${jdbc.username}" 
 	 	p:password="${jdbc.password}" />
 	
-	 <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" 
-	 	p:dataSource-ref="dataSource"/>
+	 <!-- jdbc模板类 -->
+	 <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"  p:dataSource-ref="dataSource"/>
+	 
+	 <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"  lazy-init="true"/>
+	 
+	 <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlMapConfig.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="lobHandler" ref="oracleLobHandler"/>
+	 </bean>
+	 
+	 <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	 </bean>
 	 	
 </beans>

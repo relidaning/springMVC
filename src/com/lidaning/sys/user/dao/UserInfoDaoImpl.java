@@ -10,8 +10,8 @@ public class UserInfoDaoImpl extends BaseDao implements UserInfoDao{
 
 	@Override
 	public void insertUser(UserInfo u) {
-		
-		super.getJdbcTemplate().execute(" insert into tab1 (id) values ('3') "); 
+//		super.getJdbcTemplate().execute(" insert into tab1 (id) values ('3') "); 
+		getSqlMapClientTemplate().insert("userInfo.insert", u);
 	}
 
 	@Override

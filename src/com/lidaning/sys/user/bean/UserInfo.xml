@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="userInfo">
+
+	<typeAlias alias="userInfo" type="com.lidaning.sys.user.bean.UserInfo" />
+
+	<insert id="insert" parameterClass="userInfo">
+		insert into user_info(
+		ID ,
+		name ,
+		password
+		) values (
+		'2', '2', '2'
+		)
+	</insert>
+	
+</sqlMap>

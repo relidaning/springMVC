@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lidaning.sys.user.bean.UserInfo;
 import com.lidaning.sys.user.service.UserInfoService;
 
 @Controller
@@ -48,6 +49,14 @@ public class UserController {
 		
 		
 		return "user/index";
+	}
+	
+	@RequestMapping("insertUser")
+	public String insertUser() {
+		
+		this.userInfoService.insertUser(new UserInfo());
+		
+		return index();
 	}
 	
 	public UserInfoService getUserInfoService() {
