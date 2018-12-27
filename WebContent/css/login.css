@@ -1,0 +1,14 @@
+@charset "UTF-8";
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.user_div{
+	position: absolute;
+    top: 220px;
+    left: 500px;
+	background: #FFFFFF;
+	width: 250px;
+	height: 100px;
+}

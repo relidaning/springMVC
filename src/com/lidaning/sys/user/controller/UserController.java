@@ -35,9 +35,19 @@ public class UserController {
 		
 		boolean b = this.userInfoService.getUserByUsernamePassword(username, password);
 		if(b)
-			return "user/seccess";
-		else
-			return "user/failed";
+			return index();
+		else {
+			req.setAttribute("msg", "用户或密码错误！");
+			return "user/login";
+		}
+	}
+	
+	public String index() {
+		
+		//查询登录用户的分类，标签，笔记
+		
+		
+		return "user/index";
 	}
 	
 	public UserInfoService getUserInfoService() {

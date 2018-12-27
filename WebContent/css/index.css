@@ -1,0 +1,92 @@
+@charset "UTF-8";
+<!--
+
+div.__01 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:1366px;
+	height:695px;
+}
+
+div.note-01 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:1366px;
+	height:45px;
+}
+
+div.note-02 {
+	position:absolute;
+	left:0px;
+	top:45px;
+	width:186px;
+	height:621px;
+}
+
+div.note-03 {
+	position:absolute;
+	left:186px;
+	top:45px;
+	width:239px;
+	height:61px;
+}
+
+div.note-04 {
+	position:absolute;
+	left:425px;
+	top:45px;
+	width:941px;
+	height:61px;
+}
+
+div.note-05 {
+	position:absolute;
+	left:186px;
+	top:106px;
+	width:239px;
+	height:560px;
+}
+
+div.note-06 {
+	position:absolute;
+	left:425px;
+	top:106px;
+	width:187px;
+	height:37px;
+}
+
+div.note-07 {
+	position:absolute;
+	left:612px;
+	top:106px;
+	width:754px;
+	height:37px;
+}
+
+div.note-08 {
+	position:absolute;
+	left:425px;
+	top:143px;
+	width:941px;
+	height:30px;
+}
+
+div.note-09 {
+	position:absolute;
+	left:425px;
+	top:173px;
+	width:941px;
+	height:493px;
+}
+
+div.note-10 {
+	position:absolute;
+	left:0px;
+	top:666px;
+	width:1366px;
+	height:29px;
+}
+
+-->
