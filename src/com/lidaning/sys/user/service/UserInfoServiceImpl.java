@@ -1,6 +1,6 @@
 package com.lidaning.sys.user.service;
 
-import java.util.UUID;
+import java.sql.ResultSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +13,14 @@ public class UserInfoServiceImpl implements UserInfoService{
 	
 	@Autowired
 	private UserInfoDao userInfoDao;
-
+	
 	@Override
 	public void insertUser(UserInfo u) {
-		u.setId(UUID.randomUUID().toString());
+		
+		u.setId("1");
 		u.setName("lidaning");
 		u.setPassword("***");
 		userInfoDao.insertUser(u);
-		
-		u.setId(UUID.randomUUID().toString());
-		u.setName("lidaning");
-		u.setPassword("***");
 		userInfoDao.insertUser(u);
 	}
 	

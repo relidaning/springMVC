@@ -40,27 +40,21 @@
 	 </bean>
 	 
 	 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+		<property name="dataSource" ref="dataSource"></property>
+	 </bean>
 
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true"/>
-			<tx:method name="find*" read-only="true"/>
-			<tx:method name="select*" read-only="true"/>
-			<tx:method name="count*" read-only="true"/>
-			<tx:method name="search*" read-only="true"/>
-			<!-- 添加事务 -->
-			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="*" read-only="false"/>
-		</tx:attributes>
+	 <tx:advice id="txAdvice" transaction-manager="txManager">
+	    <tx:attributes>
+	        <tx:method name="insert*" propagation="REQUIRED"/>    
+	        <tx:method name="*"/>
+	    </tx:attributes>
 	</tx:advice>
-	<!-- 通用事务配置 -->
-	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="(execution(public * com.lidaning.*.*.service..*(..)))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
-	</aop:config>
+    
+    <aop:config>
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="txPointcut" expression="execution(* com.lidaning.sys.user.service..*.*(..))" />
+        <!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
+        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+    </aop:config>
 	 	
 </beans>

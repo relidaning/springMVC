@@ -28,7 +28,7 @@ function fnOnClick(){
 用户名：<input name="username" />
 密&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" />
 <input type="button" value="提交" onclick="fnOnClick();"/>
-</div>
 </form>
+</div>
 </body>
 </html>
