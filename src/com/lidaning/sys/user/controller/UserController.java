@@ -54,7 +54,12 @@ public class UserController {
 	@RequestMapping("insertUser")
 	public String insertUser() {
 		
-		this.userInfoService.insertUser(new UserInfo());
+		try {
+			
+			this.userInfoService.insertUser(new UserInfo());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		return index();
 	}

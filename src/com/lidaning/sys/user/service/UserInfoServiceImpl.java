@@ -1,7 +1,5 @@
 package com.lidaning.sys.user.service;
 
-import java.sql.ResultSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	private UserInfoDao userInfoDao;
 	
 	@Override
-	public void insertUser(UserInfo u) {
+	public void insertUser(UserInfo u) throws Exception {
 		
 		u.setId("1");
 		u.setName("lidaning");

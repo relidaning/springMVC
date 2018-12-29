@@ -13,6 +13,10 @@
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			http://www.springframework.org/schema/tx 
             http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
+            
+
+    <context:component-scan base-package="com.lidaning"/>
+            
      <!-- 启动@AspectJ支持 -->
      <aop:aspectj-autoproxy/>
      
@@ -39,22 +43,30 @@
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	 </bean>
 	 
-	 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	 </bean>
-
-	 <tx:advice id="txAdvice" transaction-manager="txManager">
+	<!-- 配置事务管理 -->
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 拦截器方式配置事物 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 	    <tx:attributes>
-	        <tx:method name="insert*" propagation="REQUIRED"/>    
-	        <tx:method name="*"/>
+	        <!-- 必须要有事务,没有则创建 -->
+	        <tx:method name="insert*" propagation="REQUIRED" />
+	        <tx:method name="update*" propagation="REQUIRED" />
+	        <tx:method name="delete*" propagation="REQUIRED" />
+	        <!-- 可以有可以没有 -->
+	        <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+	        <tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+	        <tx:method name="select*" propagation="SUPPORTS" read-only="true" />
 	    </tx:attributes>
 	</tx:advice>
-    
-    <aop:config>
-        <!-- 只对业务逻辑层实施事务 -->
-        <aop:pointcut id="txPointcut" expression="execution(* com.lidaning.sys.user.service..*.*(..))" />
-        <!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
-        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
-    </aop:config>
+	
+	
+	<!-- Spring aop事务管理 -->
+	<aop:config>
+	    <aop:pointcut id="transactionPointcut" expression="execution(* com.lidaning.sys.user.service..*.*(..))" />
+	    <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+	</aop:config>
 	 	
 </beans>

@@ -7,7 +7,7 @@ import com.lidaning.sys.user.bean.UserInfo;
 @Service
 public interface UserInfoService {
 	
-	public void insertUser(UserInfo u);
+	public void insertUser(UserInfo u) throws Exception;
 
 	public boolean getUserByUsernamePassword(String username, String password);
 
