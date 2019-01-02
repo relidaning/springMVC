@@ -1,3 +1,5 @@
+框架：spring+springMVC+ibatis
+
 springframework
 
 log4j，commons-logging
@@ -11,6 +13,8 @@ aoppalliance, asm
 	
 commons.dbcp, commons-collections, commons-pool
 	数据库连接池
+	
+	
 	
 		
 	

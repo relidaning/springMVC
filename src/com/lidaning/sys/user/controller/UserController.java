@@ -1,5 +1,7 @@
 package com.lidaning.sys.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,14 @@ public class UserController {
 		}
 		
 		return index();
+	}
+	
+	@RequestMapping("/getUserList")
+	public String getUserList() {
+		
+		List list= userInfoService.getUserList();
+		
+		return "user/userList";
 	}
 	
 	public UserInfoService getUserInfoService() {

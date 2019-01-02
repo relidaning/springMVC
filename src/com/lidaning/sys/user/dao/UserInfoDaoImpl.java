@@ -1,5 +1,7 @@
 package com.lidaning.sys.user.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.lidaning.sys.base.BaseDao;
@@ -16,6 +18,12 @@ public class UserInfoDaoImpl extends BaseDao implements UserInfoDao{
 	@Override
 	public int getUserByUsernamePassword(String username, String password) {
 		return super.getJdbcTemplate().queryForInt(" select count(1) from user_info where name='"+username+"' and password = '"+password+"' ");
+	}
+
+	@Override
+	public List getUserList() {
+		
+		return getSqlMapClientTemplate().queryForList("userInfo.select-list", 1, 10);
 	}
 
 }

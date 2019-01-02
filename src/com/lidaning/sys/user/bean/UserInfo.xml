@@ -14,4 +14,14 @@
 		)
 	</insert>
 	
+	<select id="select-list" resultClass="userInfo">
+		select id id,
+			name name,
+			password password
+		from 
+			user_info T limit 0, 10
+			
+			<!-- select id as id, phone_no as name  from s_user_info t  -->
+	</select>
+	
 </sqlMap>

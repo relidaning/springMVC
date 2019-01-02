@@ -1,5 +1,7 @@
 package com.lidaning.sys.user.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,15 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public boolean getUserByUsernamePassword(String username, String password) {
 		int i = this.userInfoDao.getUserByUsernamePassword(username, password);
 		return i>0?true:false;
+	}
+
+
+
+
+	@Override
+	public List getUserList() {
+		
+		return this.userInfoDao.getUserList();
 	}
 
 }
