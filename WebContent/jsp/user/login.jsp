@@ -24,7 +24,7 @@ function fnOnClick(){
 </script>
 <body>
 <div class="user_div">
-<form id="form" action="logon.html" >
+<form id="form" action="logon.html" mothod="post" >
 用户名：<input name="username" />
 密&nbsp;&nbsp;&nbsp;码：<input name="password" type="password" />
 <input type="button" value="提交" onclick="fnOnClick();"/>
