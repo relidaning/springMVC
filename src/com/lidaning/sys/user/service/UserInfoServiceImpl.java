@@ -19,9 +19,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 		
 		u.setId("1");
 		u.setName("lidaning");
-		u.setPassword("***");
+		u.setPassword("123456");
 		userInfoDao.insertUser(u);
-		userInfoDao.insertUser(u);
+//		userInfoDao.insertUser(u);
 	}
 	
 	

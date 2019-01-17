@@ -6,11 +6,12 @@
 	<typeAlias alias="userInfo" type="com.lidaning.sys.user.bean.UserInfo" />
 
 	<insert id="insert" parameterClass="userInfo">
-		insert into s_user_info(
+		insert into user_info(
 		id ,
-		user_id 
+		name,
+		password 
 		) values (
-		#id#, #name#
+		#id#, #name#, #password#
 		)
 	</insert>
 	
